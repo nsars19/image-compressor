@@ -1,8 +1,10 @@
 const sharp = require("sharp");
 const { readdir } = require("fs/promises");
 
-function compress(opts) {
-  const { size, readPath, writePath } = opts;
+function compress(opts = {}) {
+  const size = opts.size || 1080;
+  const readPath = opts.readPath || "assets";
+  const writePath = opts.writePath || "processed";
 
   function getFileNames() {
     readdir(readPath).then((data) => {
@@ -22,4 +24,4 @@ function compress(opts) {
   getFileNames();
 }
 
-compress({ size: 1080, readPath: "./assets", writePath: "processed" });
+compress();
