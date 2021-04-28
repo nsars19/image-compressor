@@ -4,13 +4,13 @@ const { readdir } = require("fs/promises");
 function compress(opts) {
   const { size, readPath, writePath } = opts;
 
-  async function getFileNames() {
-    await readdir(readPath).then((data) => {
+  function getFileNames() {
+    readdir(readPath).then((data) => {
       compressImages(data);
     });
   }
 
-  async function compressImages(data) {
+  function compressImages(data) {
     for (let path of data) {
       sharp(readPath + "/" + path)
         .resize(size)
