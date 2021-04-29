@@ -16,7 +16,7 @@ function compress(opts = {}) {
     for (let path of data) {
       sharp(readPath + "/" + path)
         .resize(size)
-        .jpeg({ mozjpeg: true })
+        .jpeg({ mozjpeg: true, progressive: true })
         .toFile(`${writePath}/${path}`);
     }
   }
